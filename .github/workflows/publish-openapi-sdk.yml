@@ -1,6 +1,6 @@
 name: Publish OpenAPI SDK to PyPI
 
-run-name: Publish llama-stack-open-client to PyPI
+run-name: Publish ogx-open-client to PyPI
 
 on:
   workflow_dispatch:
@@ -69,7 +69,7 @@ jobs:
       - name: Generate OpenAPI SDK
         working-directory: client-sdks/openapi
         run: |
-          echo "Generating SDK with OPEN=1 (llama_stack_open_client)..."
+          echo "Generating SDK with OPEN=1 (ogx_open_client)..."
           make sdk OPEN=1
 
       - name: Verify SDK generation
@@ -137,15 +137,15 @@ jobs:
           echo "- **Event**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Dry Run**: ${{ inputs.dry_run || 'false' }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Target**: ${{ inputs.publish_to || 'testpypi (default)' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Package**: llama-stack-open-client" >> $GITHUB_STEP_SUMMARY
+          echo "- **Package**: ogx-open-client" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             echo "✅ Package built successfully (dry-run, not published)" >> $GITHUB_STEP_SUMMARY
           elif [ "${{ inputs.publish_to }}" = "testpypi" ] || [ "${{ github.event_name }}" = "push" ]; then
             echo "✅ Package published to TestPyPI" >> $GITHUB_STEP_SUMMARY
-            echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ llama-stack-open-client\`" >> $GITHUB_STEP_SUMMARY
+            echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`" >> $GITHUB_STEP_SUMMARY
           else
             echo "✅ Package published to PyPI" >> $GITHUB_STEP_SUMMARY
-            echo "Install with: \`pip install llama-stack-open-client\`" >> $GITHUB_STEP_SUMMARY
+            echo "Install with: \`pip install ogx-open-client\`" >> $GITHUB_STEP_SUMMARY
           fi

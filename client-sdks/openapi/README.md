@@ -103,13 +103,13 @@ Configure these GitHub secrets for the repository:
 After publishing to TestPyPI:
 
 ```bash
-pip install --index-url https://test.pypi.org/simple/ llama-stack-open-client
+pip install --index-url https://test.pypi.org/simple/ ogx-open-client
 ```
 
 After publishing to PyPI:
 
 ```bash
-pip install llama-stack-open-client
+pip install ogx-open-client
 ```
 
 ## Files
