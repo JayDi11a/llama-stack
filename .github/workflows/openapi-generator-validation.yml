@@ -249,11 +249,13 @@ jobs:
       - name: Summary
         if: runner.os == 'Linux'
         run: |
-          echo "## OpenAPI SDK Validation Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ SDK generation completed successfully" >> $GITHUB_STEP_SUMMARY
-          echo "✅ SDK installed and importable" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Integration tests executed (check logs for results)" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Platform**: ${{ matrix.os }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Package**: ogx_client (OpenAPI-generated)" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "## OpenAPI SDK Validation Summary"
+            echo ""
+            echo "✅ SDK generation completed successfully"
+            echo "✅ SDK installed and importable"
+            echo "✅ Integration tests executed (check logs for results)"
+            echo ""
+            echo "**Platform**: ${{ matrix.os }}"
+            echo "**Package**: ogx_client (OpenAPI-generated)"
+          } >> "$GITHUB_STEP_SUMMARY"

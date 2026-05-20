@@ -132,20 +132,22 @@ jobs:
 
       - name: Summary
         run: |
-          echo "## SDK Publishing Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Event**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Dry Run**: ${{ inputs.dry_run || 'false' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Target**: ${{ inputs.publish_to || 'testpypi (default)' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Package**: ogx-open-client" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "## SDK Publishing Summary"
+            echo ""
+            echo "- **Event**: ${{ github.event_name }}"
+            echo "- **Dry Run**: ${{ inputs.dry_run || 'false' }}"
+            echo "- **Target**: ${{ inputs.publish_to || 'testpypi (default)' }}"
+            echo "- **Package**: ogx-open-client"
+            echo ""
 
-          if [ "${{ inputs.dry_run }}" = "true" ]; then
-            echo "✅ Package built successfully (dry-run, not published)" >> $GITHUB_STEP_SUMMARY
-          elif [ "${{ inputs.publish_to }}" = "testpypi" ] || [ "${{ github.event_name }}" = "push" ]; then
-            echo "✅ Package published to TestPyPI" >> $GITHUB_STEP_SUMMARY
-            echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "✅ Package published to PyPI" >> $GITHUB_STEP_SUMMARY
-            echo "Install with: \`pip install ogx-open-client\`" >> $GITHUB_STEP_SUMMARY
-          fi
+            if [ "${{ inputs.dry_run }}" = "true" ]; then
+              echo "✅ Package built successfully (dry-run, not published)"
+            elif [ "${{ inputs.publish_to }}" = "testpypi" ] || [ "${{ github.event_name }}" = "push" ]; then
+              echo "✅ Package published to TestPyPI"
+              echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`"
+            else
+              echo "✅ Package published to PyPI"
+              echo "Install with: \`pip install ogx-open-client\`"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
