@@ -103,7 +103,7 @@ jobs:
       - name: Publish to TestPyPI (dry-run or manual)
         if: |
           (github.event_name == 'workflow_dispatch' && inputs.publish_to == 'testpypi' && inputs.dry_run == false) ||
-          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/openapi-sdk-v') && !contains(github.ref, '-'))
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/openapi-sdk-v') && !contains(github.ref, '-rc') && !contains(github.ref, '-alpha') && !contains(github.ref, '-beta'))
         working-directory: client-sdks/openapi/sdks/python
         run: |
           echo "Publishing to TestPyPI..."

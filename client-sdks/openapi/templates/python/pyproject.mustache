@@ -6,19 +6,19 @@
 {{/poetry1}}
 name = "{{{packageName}}}"
 version = "{{{packageVersion}}}"
-description = "Python client SDK for Llama Stack - AI development framework"
+description = "Python client SDK for OGX - AI development framework"
 {{#poetry1}}
-authors = ["Meta Llama Team <llama-oss@meta.com>"]
+authors = ["The OGX Contributors <contributors@ogx.dev>"]
 {{/poetry1}}
 {{^poetry1}}
 authors = [
-  {name = "Meta Llama Team", email = "llama-oss@meta.com"},
+  {name = "The OGX Contributors", email = "contributors@ogx.dev"},
 ]
 {{/poetry1}}
 license = { text = "MIT" }
 readme = "README.md"
 {{#poetry1}}
-repository = "https://github.com/llamastack/llama-stack"
+repository = "https://github.com/ogx-ai/ogx"
 {{/poetry1}}
 keywords = ["llama", "llama-stack", "ai", "ml", "openai", "inference", "agents"]
 classifiers = [
@@ -26,8 +26,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
@@ -85,10 +83,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://llamastack.github.io"
-Documentation = "https://llamastack.github.io/docs"
-Repository = "https://github.com/llamastack/llama-stack"
-"Bug Tracker" = "https://github.com/llamastack/llama-stack/issues"
+Homepage = "https://ogx-ai.github.io"
+Documentation = "https://ogx-ai.github.io/docs"
+Repository = "https://github.com/ogx-ai/ogx"
+"Bug Tracker" = "https://github.com/ogx-ai/ogx/issues"
 
 {{/poetry1}}
 {{^poetry1}}
