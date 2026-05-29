@@ -143,9 +143,17 @@ jobs:
 
             if [ "${{ inputs.dry_run }}" = "true" ]; then
               echo "✅ Package built successfully (dry-run, not published)"
-            elif [ "${{ inputs.publish_to }}" = "testpypi" ] || [ "${{ github.event_name }}" = "push" ]; then
+            elif [ "${{ inputs.publish_to }}" = "testpypi" ]; then
               echo "✅ Package published to TestPyPI"
               echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`"
+            elif [ "${{ github.event_name }}" = "push" ]; then
+              # Check for pre-release tags (same logic as publish step)
+              if [[ "${{ github.ref }}" == *"-rc"* ]] || [[ "${{ github.ref }}" == *"-alpha"* ]] || [[ "${{ github.ref }}" == *"-beta"* ]]; then
+                echo "✅ Package built successfully (pre-release tag, not published)"
+              else
+                echo "✅ Package published to TestPyPI"
+                echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`"
+              fi
             else
               echo "✅ Package published to PyPI"
               echo "Install with: \`pip install ogx-open-client\`"
