@@ -148,12 +148,15 @@ jobs:
               echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`"
             elif [ "${{ github.event_name }}" = "push" ]; then
               # Check for pre-release tags (same logic as publish step)
-              if [[ "${{ github.ref }}" == *"-rc"* ]] || [[ "${{ github.ref }}" == *"-alpha"* ]] || [[ "${{ github.ref }}" == *"-beta"* ]]; then
-                echo "✅ Package built successfully (pre-release tag, not published)"
-              else
-                echo "✅ Package published to TestPyPI"
-                echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`"
-              fi
+              case "${{ github.ref }}" in
+                *"-rc"*|*"-alpha"*|*"-beta"*)
+                  echo "✅ Package built successfully (pre-release tag, not published)"
+                  ;;
+                *)
+                  echo "✅ Package published to TestPyPI"
+                  echo "Install with: \`pip install --index-url https://test.pypi.org/simple/ ogx-open-client\`"
+                  ;;
+              esac
             else
               echo "✅ Package published to PyPI"
               echo "Install with: \`pip install ogx-open-client\`"
