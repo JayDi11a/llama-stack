@@ -70,6 +70,41 @@ merge_stainless_config.py  ->  build_hierarchy.py  ->  openapi-generator  ->  pa
 - `sdks/python/` - Generated Python SDK
 - `.openapi-generator/` - Generator metadata
 
+## CI/CD Automation
+
+### Continuous Integration
+
+The CI workflow (`.github/workflows/openapi-generator-validation.yml`) automatically validates SDK generation on every PR:
+
+- ✅ Generates OpenAPI spec from Stainless config
+- ✅ Builds Python SDK (1,134 files)
+- ✅ Verifies SDK installation and imports
+- ✅ Runs integration tests against generated SDK
+- ✅ Multi-platform testing:
+  - **Ubuntu** - Always runs
+  - **macOS** - Runs for main/release branch pushes, or when critical files change
+
+**Triggered by:**
+
+- Pull requests modifying OpenAPI generation files
+- Pushes to `main` or `release-*` branches
+- Manual workflow_dispatch
+
+### Continuous Delivery
+
+The CD workflow (`.github/workflows/publish-openapi-sdk.yml`) automatically publishes SDK to PyPI:
+
+**Automatic publishing (via tags):**
+
+- Tags matching `openapi-sdk-v*` trigger builds
+- Stable versions (e.g., `openapi-sdk-v1.0.0`) → Published to TestPyPI
+- Pre-release versions (e.g., `openapi-sdk-v1.0.0-rc1`) → Built only, not published
+
+**Manual publishing (via GitHub UI):**
+
+- Go to Actions → "Publish OpenAPI SDK to PyPI"
+- Choose target (TestPyPI/PyPI) and dry-run mode
+
 ## Publishing to PyPI
 
 The SDK can be published to PyPI using the GitHub Actions workflow at `.github/workflows/publish-openapi-sdk.yml`.
@@ -84,12 +119,19 @@ The SDK can be published to PyPI using the GitHub Actions workflow at `.github/w
 
 ### Automatic Publishing (via Git Tags)
 
-Push a tag matching `openapi-sdk-v*` to trigger automatic publishing to TestPyPI:
+Push a tag matching `openapi-sdk-v*` to trigger automatic builds:
 
 ```bash
-git tag openapi-sdk-v0.5.0
-git push origin openapi-sdk-v0.5.0
+# Stable release → Published to TestPyPI
+git tag openapi-sdk-v1.0.0
+git push origin openapi-sdk-v1.0.0
+
+# Pre-release → Built only, not published
+git tag openapi-sdk-v1.0.0-rc1
+git push origin openapi-sdk-v1.0.0-rc1
 ```
+
+**Note:** Pre-release tags (containing `-rc`, `-alpha`, or `-beta`) are built for validation but not published to avoid cluttering the package index.
 
 ### Required Secrets
 

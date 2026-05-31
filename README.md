@@ -78,10 +78,20 @@ See the [Quick Start guide](https://ogx-ai.github.io/docs/getting_started/quicks
 
 **Client SDKs:**
 
+OGX provides official client SDKs for Python and TypeScript:
+
 |  Language |  SDK | Package |
 | :----: | :----: | :----: |
 | Python |  [ogx-client-python](https://github.com/ogx-ai/ogx-client-python) | [![PyPI version](https://img.shields.io/pypi/v/ogx_client.svg)](https://pypi.org/project/ogx_client/) |
 | TypeScript   | [ogx-client-typescript](https://github.com/ogx-ai/ogx-client-typescript) | [![NPM version](https://img.shields.io/npm/v/ogx-client.svg)](https://npmjs.org/package/ogx-client) |
+
+**Alternative Python SDK:**
+
+For users who prefer an OpenAPI Generator-based SDK, an alternative Python client is available:
+
+- **[ogx-open-client](https://pypi.org/project/ogx-open-client/)** — Auto-generated from OpenAPI spec, provides similar functionality with a different generation approach
+
+The official `ogx_client` SDK is recommended for most use cases. The `ogx_open_client` package offers an alternative for teams with specific OpenAPI tooling requirements.
 
 ## Community
 
