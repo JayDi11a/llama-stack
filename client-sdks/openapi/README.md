@@ -154,6 +154,12 @@ After publishing to PyPI:
 pip install ogx-open-client
 ```
 
+## Documentation
+
+- **[USAGE_EXAMPLES.md](USAGE_EXAMPLES.md)** - End-to-end code examples for all major API features
+- **[STRATEGY.md](STRATEGY.md)** - Long-term strategy, ownership, versioning, and deprecation policy
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Production deployment guide, environment setup, rollback procedures
+
 ## Files
 
 - `Makefile` - Build orchestration
@@ -164,3 +170,5 @@ pip install ogx-open-client
 - `openapi-config.json` - Python SDK generation config
 - `openapitools.json` - OpenAPI Generator CLI version config
 - `templates/python/` - Custom Mustache templates and library files
+  - `LICENSE.mustache` - MIT license for generated SDK
+  - `CHANGELOG.mustache` - Changelog template for release notes

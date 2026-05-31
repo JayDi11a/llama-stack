@@ -33,7 +33,7 @@ jobs:
   publish-sdk:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.event.inputs.publish_to || 'testpypi' }}
+      name: ${{ github.event.inputs.publish_to == 'pypi' && 'pypi-production' || 'testpypi' }}
 
     steps:
       - name: Checkout repository
